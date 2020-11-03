@@ -52,7 +52,14 @@
 
     text-decoration: none;
 
+    transition: background 0.2s;
+
     color: var(--color-button-text);
+}
+
+.buttons-containera a img {
+    width: 4rem;
+    margin-right: 2.4rem;
 }
 
 .buttons-container a.study {
@@ -60,8 +67,23 @@
    
 }
 
-.buttons-container a.give-classes {
-    background: var(--color-secondary)
-:
+.buttons-container a.study:hover {
+    background: var(--color-primary-lighter);
+
 }
 
+.buttons-container a.give-classes {
+    background: var(--color-secondary);
+    margin-right: 0;
+}
+
+.buttons-cantainer a.give-classes:hover{
+    background: var(--color-secondary-dark);
+}
+
+.total-connections {
+    font-size: 1.8rem;
+
+    
+
+}
