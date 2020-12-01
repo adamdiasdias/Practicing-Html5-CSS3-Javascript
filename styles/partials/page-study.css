@@ -197,7 +197,7 @@
         border: 0;
         border-radius: .8rem;
         cursor: pointer;
-        font: 700 1.4rem Archivos;
+        font: 700 1.4rem Archivo;
 
         display: flex;
         align-items: center;
@@ -207,4 +207,8 @@
 
         transition: background 0.2s;
         margin-left: 1.6rem;
+    }
+
+    .teacher-item footer button:hover{
+            background: var(--color-secundary-dark);
     }
