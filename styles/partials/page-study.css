@@ -233,10 +233,13 @@
         .page-header .header-content {
             max-width: 740px;
 
+            /* margin: 0 auto; */
+
             flex: 1 1;
             padding-bottom: 48px;
             display: flex;
-            /* flex-direction: colum; */
+            flex-direction: column;
+            justify-content: center; 
         }
 
         .teacher-intem header,
@@ -249,6 +252,7 @@
             grid-template-columns: repeat(4,1rf);
             gap: 16px;
             position: absolute;
+            bottom: -28px;
         }
         
     }
