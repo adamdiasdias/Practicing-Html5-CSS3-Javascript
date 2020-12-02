@@ -39,6 +39,8 @@
     .page-header .header-content {
         width: 90%;
         margin: 3.2rem auto;
+
+        position: relative;
     }
 
     .page-header .header-content strong {
@@ -211,4 +213,25 @@
 
     .teacher-item footer button:hover{
             background: var(--color-secundary-dark);
+    }
+
+    /*02/12/2020*/
+
+    @media (min-width:700px) {
+        #page-study #container {
+            max-widhth: 100vw;
+        }
+
+        .teacher-intem header,
+        .teacher-intem footer{
+            padding: 32px;
+        }
+
+        #search-teachers {
+            display: grid;
+            grid-template-columns: repeat(4,1rf);
+            gap: 16px;
+            position: absolute;
+        }
+        
     }
