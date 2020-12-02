@@ -230,6 +230,15 @@
             max-width: 1100px;
         }
 
+        .page-header .header-content {
+            max-width: 740px;
+
+            flex: 1 1;
+            padding-bottom: 48px;
+            display: flex;
+            /* flex-direction: colum; */
+        }
+
         .teacher-intem header,
         .teacher-intem footer{
             padding: 32px;
