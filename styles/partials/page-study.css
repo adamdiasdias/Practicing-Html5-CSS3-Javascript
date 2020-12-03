@@ -264,7 +264,12 @@
         #page-study main {
             padding: 32px 0;
             max-width: 740px;
-            margin: 
+            margin: 0 auto;
+
+        }
+
+        #search-teachers .select-block {
+            margin-bottom: 0;
         }
         
     }
