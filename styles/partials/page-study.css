@@ -184,7 +184,7 @@
        
     }
 
-    .teacher-intem footer p strong {
+    .teacher-item footer p strong {
         font-size: 1.6rem;
         color: var(--color-primary);
         display: block;
