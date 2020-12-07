@@ -288,7 +288,8 @@
         }
 
         .teacher-item footer button img {
-            
+            margin-right: 16px; 
+
         }
 
     }
