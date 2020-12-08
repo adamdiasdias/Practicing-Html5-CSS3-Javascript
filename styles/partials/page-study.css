@@ -160,7 +160,7 @@
         margin-top: .4rem;
     }
 
-    .teacher-item p {
+    .teacher-item > p {
         padding: 0 2rem;
         font-size: 1.6rem;
         line-height: 2.8rem;    
@@ -272,7 +272,7 @@
             margin-bottom: 0;
         }
 
-        .teacher-item p {
+        .teacher-item > p {
             padding: 0 32px;
         }
         
@@ -289,6 +289,11 @@
 
         .teacher-item footer button img {
             margin-right: 16px; 
+
+        }
+
+        .teacher-item footer button {
+            width: 245px;
 
         }
 
