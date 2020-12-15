@@ -5,6 +5,14 @@
     flex-direction: column;
 }
 
+.page-header {
+    background-color: var(--color-primary);
+
+    display: flex;
+    flex-direction: colum;
+
+}
+
 
 
     
