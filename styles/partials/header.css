@@ -24,8 +24,13 @@
     height: 1.6rem;
 }
 
-
+.page-hader .header-content {
+    width: 90%;
+    margin: 3.2rem auto;
+    
+    position: relative;
 }
+
 
 
 
