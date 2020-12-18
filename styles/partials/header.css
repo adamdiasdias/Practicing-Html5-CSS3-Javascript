@@ -49,4 +49,13 @@
         height: 340px;
     }
 
-    
+    .page-header .top-bar-container {
+        max-width: 740px;
+
+        margin: 0 auto;
+        flex: 1 1;
+        padding-bottom: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }    
