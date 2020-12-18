@@ -37,7 +37,7 @@
     color: var(--color-title-in-primary);
 }
 
-/* 18/12/2020 */
+/* 18/12/2020 - video 03 00:07:30 */
 
 @media (min-width:700px) {
     #page-study #container {
@@ -59,3 +59,21 @@
         flex-direction: column;
         justify-content: center;
     }    
+
+    .page-header . header-content strong {
+        max-width: 350px;
+
+    }
+
+    .teacher-item header,
+    .teacher-item footer {
+        padding: 32px
+    }
+
+    #search-teachers {
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 16px;
+        position: absolute;
+        bottom: -28px;
+    }
