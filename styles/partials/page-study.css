@@ -217,7 +217,7 @@
 
     /*02/12/2020*/
 
-    @media (min-width:700px) {
+        @media (min-width:700px) {
         #page-study #container {
             max-width: 100vw;
         }
