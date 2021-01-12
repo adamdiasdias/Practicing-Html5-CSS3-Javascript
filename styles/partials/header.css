@@ -134,7 +134,7 @@
             padding: 32px;
         }
 
-        #search-teachers {
+        #se{
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
@@ -182,4 +182,9 @@
 
         .teacher-item footer button img {
             margin-right: 16px;
+        }
+
+
+        .teahcer-tem footter button img {
+            margin-right: 16px
         }
