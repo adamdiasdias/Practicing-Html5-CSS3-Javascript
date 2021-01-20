@@ -39,7 +39,21 @@
 }
 
 #page-give-classes fieldset legend button {
+    background-color: none;
+    border: 0;
+
+    color: var(--oclor-primary) ;
+
+    font: 700 1.6rem Archivos;
     
+    cursor: pointer;
+
+    transition: 0.2;
+
+}
+#page-give-classes fieldset legend button::hover{
+    transform: translate(-5px);
+    color: var(--color-primary-dark);
 }
 
 #page-give-classes fieldset+fieldset {
