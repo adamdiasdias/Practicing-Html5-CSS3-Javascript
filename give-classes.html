@@ -105,7 +105,7 @@
 
                         <div class="select-block">
                             <label for="weekday"> Dia da semana</label>
-                            <select name="weekday[]" id="weekday" required>
+                            <select name="weekday[]" required>
                                 <option value="">Selecione uma opção</option>
                                 <option value="0">Domingo</option>
                                 <option value="1">Segunda-feira</option>
@@ -120,7 +120,12 @@
 
                         <div class="input-block">
                             <label for="time_from">Das</label>
-                            <input type="time">
+                            <input type="time" name="time_from[]" required>
+                        </div>
+
+                        <div class="input-block">
+                            <label for="time_to">até</label>
+                            <input type="time" name="time_to[]" required>
                         </div>
 
                     </div>
