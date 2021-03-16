@@ -1,0 +1,20 @@
+
+
+- TAG background-color serve para alterar cor do fundo da pagina.
+
+    body {
+        background-color: #8257E5;
+    }
+
+- TAG :root signifca que estou sugerindo ao css, toda minha pagina html.
+    Em outras palavras "A pseudo-classe CSS  :root se equipara à raíz de uma
+     árvore, que por sua vez representa o documento. Aplicado ao HTML, 
+     :root representa o elemento <html>  e é identico ao seletor html, 
+     exceto que sua especificidade é mais alta." Exemplo:root
+
+     :root {
+         --main-color: hotpink;
+         --pane-padding: 5px 42px;
+     }
+
+
