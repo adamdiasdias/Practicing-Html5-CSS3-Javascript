@@ -6,6 +6,28 @@
         background-color: #8257E5;
     }
 
+            Reforçando as funçoes desse elemento
+            background-color= realiza a mudança do fundo da pagina
+            #8257E5 = Uma definição de cor chamado de hexadecimal color
+                        colocando o mouse sobre essa hexadecial, abria toda linha de cores,
+                        onde voce pode alterar para RGB e etc;
+
+        ou
+
+    body {
+        background-color: var(--color-primary-darker);
+    }
+
+
+            Reforçando as funços desses elementos 
+
+            background-color = Mudança de fundo da sua página.
+            var = informando a referenca  do background-color 
+            (--color-primary-darker); = 
+
+
+            
+
 - TAG :root signifca que estou sugerindo ao css, toda minha pagina html.
     Em outras palavras "A pseudo-classe CSS  :root se equipara à raíz de uma
      árvore, que por sua vez representa o documento. Aplicado ao HTML, 
@@ -15,6 +37,13 @@
      :root {
          --main-color: hotpink;
          --pane-padding: 5px 42px;
+     }
+
+     ou
+
+     :root {
+         --color-background: #F0F0F7;
+         --color-primary-lighter: #9871f5;
      }
 
 
