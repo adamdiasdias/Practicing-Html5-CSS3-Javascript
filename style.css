@@ -20,9 +20,14 @@
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
     --color-small-info: #C1BCCC;
+
+
     font-size: 60%; /*controle das medidas rem */
 } 
 
-body {
-    background-color: var(--color-background);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
