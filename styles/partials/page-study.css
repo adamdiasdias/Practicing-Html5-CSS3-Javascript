@@ -161,7 +161,7 @@
 .teacher-item footer {
     padding: 3.2rem 2rem;
     background-color: var(--color-box-footer);
-    border-top:  1px solid var(--color-line-white);
+    border-top:  1px solid var(--color-line-in-white);
     margin-top: 3.2rem;
 
     display: flex;
@@ -179,6 +179,7 @@
 .teacher-item footer p strong {
     font-size: 1.6rem;
     color: var(--color-primary);
+    display: block;
 }
 
 .teacher-item footer button {
@@ -200,3 +201,7 @@
     transition: background 0.2s;
     margin-left: 1.6rem;
 }
+
+.teacher-item footer button:hover {
+    background: var(--color-secondary-dark);
+} 
