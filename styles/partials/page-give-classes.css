@@ -38,6 +38,25 @@
 
 }
 
+#page-give-classes fieldset legend button{
+    background: none;
+    border: 0;
+
+    color: var(--color-primary);
+
+    font: 700 1.6rem Archivo;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+#page-give-classes fieldset legend button::hover {
+    transform: translateY(-5px);
+    color: var(--color-primary-dark);
+}
+
 #page-give-classes fieldset+fieldset {
     margin-top: 6.4rem;
 
@@ -48,6 +67,14 @@
 #page-give-classes .select-block+.input-block {
     margin-top: 2.4rem;
 
+}
+
+#page-give-classes main footer {
+    padding: 4rem 2.4rem;
+
+    background: var(--color-box-footer);
+    border-top: 1px solid var(--color-line-in-whiter);
+    margin-top: 6.4rem;
 }
 
 
