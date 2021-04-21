@@ -37,3 +37,28 @@
     border-bottom: 1px solid var(--color-line-in-whiter);
 
 }
+
+#page-give-classes fieldset legend button {
+    background: none;
+    border: 0;
+    
+    color:var(--color-primary);
+
+    font: 700 1.6rem Archibo;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#page-give-classes fieldset legend button::hover {
+    transform: translateY(-5px);
+    color: var(--color-primary-dark);
+}
+
+#page-give-classes fieldset+fieldset {
+    margin-top: 6.4rem;
+
+}
+
+
