@@ -25,14 +25,16 @@ fetAgroSmart()
 
 const createElement = (elementName, attributes) => {
     const element = document.createElement(elementName)
-    const attributesAsrray = Object.entrcara
+    const attributesAsrray = Object.entreies(attributes)
 
-    attributesAsrray.forEach()
+    attributesAsrray.forEach(([key, value]) => element.setAttribute(key, value))
 
-    console.log ()
+    return element
+
+    
 }
 
-Const input = createElement('input',{
+Const input = createElement('input', {
     type: 'radio',
     id: 'input'
     name: 'main',
