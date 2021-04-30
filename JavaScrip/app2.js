@@ -22,3 +22,24 @@ Promise.all(AgroSmartPromises)
     }
 
 fetAgroSmart()
+
+const createElement = (elementName, attributes) => {
+    const element = document.createElement(elementName)
+    const attributesAsrray = Object.entrcara
+
+    attributesAsrray.forEach()
+
+    console.log ()
+}
+
+Const input = createElement('input',{
+    type: 'radio',
+    id: 'input'
+    name: 'main',
+    value: 'principale',
+    for: 'input1',
+    'data-js' : 'input'
+})
+
+console.log(input)
+
