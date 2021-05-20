@@ -144,3 +144,37 @@ var  pJS = function(tag_id, params){
           };
                 
     
+        pJS.fn.canvasInit = function(){
+            pJS.canvas.ctx = pJS.canvas.el.getContext('2d');
+
+        };
+
+        pJS.fn.canvasSize = function(){
+
+            pJS.canvas.el.width = pJS.canvas.w;
+            pJS.canvas.el.height = pJS.canvas.h;
+
+            if(pJS && pJS.interactivity.events.resize){
+
+                window.addEventListener('resize', function() {
+
+                    pJS.canvas.w = pJS.canvas.el.offsetWidth;
+                    pJS.canvas.w = pJS.canvas.el.offsetWidth;
+
+                    if(pJS.tmp.retina){
+                        pJS.canvas.w *= pJS.canvas.pxratio;
+                        pJS.canvas.h *= pJS.canvas.pxratio;
+                    }
+
+                    pJS.canvas.el.width = pJS.canvas.w;
+                    pJS.canvas.el.height = pJS.canvas.h;
+
+                    if(!pJS.particles.move.enable){
+                        pJS.fn.particlesEmpty();
+                        pJS.fn.particlesCreate();
+                        pJS.fn.particlesDraw();
+                        pJS
+                    }
+                }
+            }
+        }
