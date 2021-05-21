@@ -143,38 +143,22 @@ var  pJS = function(tag_id, params){
             mode_repulse_distance: pJS.interactivity.modes.repulse.distance
           };
                 
-    
-        pJS.fn.canvasInit = function(){
-            pJS.canvas.ctx = pJS.canvas.el.getContext('2d');
+          pJS.fn.retinaInit = function(){
 
-        };
-
-        pJS.fn.canvasSize = function(){
-
-            pJS.canvas.el.width = pJS.canvas.w;
-            pJS.canvas.el.height = pJS.canvas.h;
-
-            if(pJS && pJS.interactivity.events.resize){
-
-                window.addEventListener('resize', function() {
-
-                    pJS.canvas.w = pJS.canvas.el.offsetWidth;
-                    pJS.canvas.w = pJS.canvas.el.offsetWidth;
-
-                    if(pJS.tmp.retina){
-                        pJS.canvas.w *= pJS.canvas.pxratio;
-                        pJS.canvas.h *= pJS.canvas.pxratio;
-                    }
-
-                    pJS.canvas.el.width = pJS.canvas.w;
-                    pJS.canvas.el.height = pJS.canvas.h;
-
-                    if(!pJS.particles.move.enable){
-                        pJS.fn.particlesEmpty();
-                        pJS.fn.particlesCreate();
-                        pJS.fn.particlesDraw();
-                        pJS
-                    }
-                }
+            if(pJS.retina_detect && window.devicePixelRatio > 1){
+                pJS.canvas.pxratio = window.devicePixelRatio;
+                pJS.tmp.retina = true;
             }
-        }
+            else{ 
+                pJS.canvas.pxratio = 1;
+                pJS.tmp.retina = false;
+            }
+
+            pJS.canvas.w = pJS.canvas.el.offsetWidth * pJS.canvas.pxratio;
+            pJS.canvas.h = pJS.canvas.el.offsetHeight * pJS.canvas.pxratio;
+
+            pJS.particles.size.value = pJS.tmp.obj.size_value * pJS.canvas.pxratio;
+            pJS.particles.size.anim.speed = pJS.tmp.obj.size_anim_speed * pJS.canvas.pxratio;
+            pJS.particles.move.speed = pJS.tmp.obj.move_speed * pJS.canvas.pxratio;
+            
+          }
