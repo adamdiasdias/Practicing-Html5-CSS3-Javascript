@@ -5,12 +5,17 @@ document.querySelector("add-time")
 
 //Executar uma ação
 function cloneField() {
-    console.log("cheguei aqui")
-    //duplicar os campos. Que campo?
 
-    //Colocar na página
+    const newfieldsContainer = document.querySelector('."schedule-item').cloneNode(true) // boolean: true ou false
+    
+    const fields = newfieldsContainer.querySelectorAll ('input')
 
+    fields.forEach(function(fields) {
+        fields.valeu =""
+    })
 
+    document.querySelector('#schedule-itens') .appendChild(newfieldsContainer)
 }
+
 
 
