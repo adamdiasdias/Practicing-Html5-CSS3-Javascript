@@ -5,6 +5,7 @@ document.querySelector("add-time")
 
 //Executar uma ação
 function cloneField() {
+    console.log("cheguei aqui")
     //duplicar os campos. Que campo?
 
     //Colocar na página
