@@ -159,8 +159,7 @@ var  pJS = function(tag_id, params){
         
         
         
-          /* ---------- pJS functions - canvas ------------ */
-        
+             
           pJS.fn.canvasInit = function(){
             pJS.canvas.ctx = pJS.canvas.el.getContext('2d');
           };
@@ -177,3 +176,38 @@ var  pJS = function(tag_id, params){
                   pJS.canvas.w = pJS.canvas.el.offsetWidth;
                   pJS.canvas.h = pJS.canvas.el.offsetHeight;
         
+                  if(pJS.tmp.retina){
+                    pJS.canvas.w *=pJS.canvas.pxratio;
+                    pJS.canvas.h *=pJS.canvas.pxratio;
+                  }
+
+
+                  pJS.canvas.el.width = pJS.canvas.w;
+                  pJS.canvas.el.height = pJS.canvas.h;
+
+                  if(!pJS.particles.move.enable){
+                      pJS.fn.particlesEmpty();
+                      pJS.fn.particlesCreate();
+                      pJS.fn.particlesDraw();
+                      pJS.fn.vendors.densityAutoParticles();
+                }
+
+                pJS.fn.vendors.densityAutoParticles();
+
+                 });
+                 
+                 }
+
+            };
+
+            pJS.fn.particles = function(){
+                pJS.canvas.ctx.fillRect(0,0, pJS.canvas.w, pJS.canvas.h);
+            };
+
+            pJS.fn.canvasClear = function (){
+                pJS.canvas.ctx.clearRect(0,0,) 
+            }
+
+            }
+    
+                 
