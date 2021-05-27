@@ -173,7 +173,7 @@ var  pJS = function(tag_id, params){
         
               window.addEventListener('resize', function(){
         
-                  pJS.canvas.w = pJS.canvas.el.offsetWidth;
+                  pJS.canvas.w = pJS.canvias.el.offsetWidth;
                   pJS.canvas.h = pJS.canvas.el.offsetHeight;
         
                   if(pJS.tmp.retina){
@@ -205,9 +205,50 @@ var  pJS = function(tag_id, params){
             };
 
             pJS.fn.canvasClear = function (){
-                pJS.canvas.ctx.clearRect(0,0,) 
+                pJS.canvas.ctx.clearRect(0,0, pJS.canvas.w, pJS.canvas.h); 
+            };
+            
+
+
+    
+            this.radius =(pJS.particles.size.random ? Math.random(): 1) * pJS.particles.size.value;
+            if(pJS.particles.size.anim.enable){ 
+                this.size._status = false;
+                this.vs = pJS.particles.size.anim.speed / 100;
+                if(pJS.particles.size.anim.sync){
+                    this.vs = this.vs * Math.random();
+                }
             }
 
+            this.x = position ? position.x : Math.random() * pJS.canvas.w;
+            this.y = position ? position.y : Math.random() * pJS.canvas.h;
+
+
+            if(this.x > pJS.canvas.w - this.radius*2) this.x = this.x - this.radius;
+            else if (this.x < this.radius*2) this.x + this.radius;
+            if(this.y > pJS.canvas.h - this.radius*2) this.y -this.radius;
+            else if(this.y < this.radius*2) this.y = this.radius;
+            
+            
+            if(pJS.particles.move.bounce){
+                pJS.fn.vendors.checkOverlap(this, position);
             }
-    
-                 
+
+            this.color = {};
+            if(typeof(color.value) == 'object'){
+                
+                if(this.color.valeu instanceof array){
+                    var color_selected = color.valeu[Math.floor(Math.random() * pJS.particles.color.value.length)];
+                     this.color.rgb = hexToRgb(color_selected);
+                }else{ 
+                    if(color.valeu.r != undefined && color.valeu.g != underfined && color.valeu.b != underfined){
+                        this.color.rgb = {
+                        r: color.valeu.r,
+                        g: color.valeu.g,
+                        b: color.valeu.b
+
+                            }
+                        } 
+        if(color.value.h != underfined)
+            }
+                )   
