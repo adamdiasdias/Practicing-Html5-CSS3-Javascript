@@ -376,3 +376,149 @@ if(this.shape == 'image'){
 }
 
 
+};
+
+pJS.fn.particle.prototype.draw = function() {
+
+  var p = this;
+
+  if(p.radius_bubble != undefined){
+    var radius = p.radius_bubble;
+  }else{
+    var radius = p.radius;
+  }
+
+  if(p.opacity_bubble != undefined){
+    var opacity = p.opacity_bubble;
+  }else{  
+    var opacity = p.opacity;
+  }
+
+  if(p.color.rgb){
+    var color_value = 'rgba('+p.color.rgb.r+','+p.color.rgb.g+','+p.color.rgb.b+','+opacity+')';
+    }else{
+      var color_value = 'hsla('+p.color.hs1.h+','+p.color.hsl.s+'%,'+p.color.hsl.l+'%,'+opacity+')';
+    }
+
+    pJS.canvas.ctx.fillStyle = color_value;
+    pJS.canvas.ctx.beginPath();
+
+    switch(p.shape){
+      
+        case'circle':
+          pJS.canvas.ctx.arc(p.x, p.y, radius, 0, Math.PI * 2, false);
+        break;
+
+        case 'edge':
+          pJS.canvas.ctx.rect(p.x-radius, p.y-radius, radius*2, radius*2);
+        break;
+
+        case 'triangle':
+          pJS.fn.vendors.drawShape(pJS.canvas.ctx, p.x-radius / 1.66, radius*2, 3, 2);
+        break;
+
+        case 'polygon':
+          pJS.fn.vendors.drawShape(
+            pJS.canvas.ctx,
+            p.x - radius / (pJS.particle.shape.polygon.nb_sides/3.5),
+            p.y - radius / (2.66/3.5),
+            radius*2.66 / (pJS.particles.shape.polygon.nb_sides/3), 
+            pJS.particles.shape.polygon.nb_sides,
+            1
+          );
+
+    break;
+
+    case 'star':
+      pJS.fn.vendors.drawShape(
+        pJS.canvas.ctx,
+        p.x - radius*2 / (pJS.particles.shape.polygon.nb_sides/4),
+        p.y - radius / (2*2.66/3.5),
+        radius*2*2.66 / (pJS.particles.shape.polygon.nb_sides/3),
+        pJS.particles.shape.polygon.nb_sides,
+        2
+      );
+    break;
+
+    case 'image':
+
+      function draw(){
+       pJS.canvas.ctx.drawImage(
+       img_obj,
+       p.x-radius,
+       p.y-radius,
+       radius*2,
+       radius*2 / p.img.ratio
+    );
+  }
+
+  if(pJS.tmp.img_type == 'svg') {
+    var img_obj = p.img.img_obj;
+  }else{
+    var img_obj = pJS.tmp.img_obj;
+  }
+
+  if(img_type){
+    draw();
+  }
+
+  break;
+
+  }
+
+  pJS.canvas.ctx.closePath();
+
+  if(pJS.particles.shape.stroke.width > 0){
+    pJS.canvas.ctx.strokeStyle = pJS.particles.shape.stroke.color;
+    pJS.canvas.ctx.lineWidth = pJS.particles.shape.stroke.width;
+    pJS.canvas.ctx.stroke();
+  }
+
+  pJS.canvas.ctx.fill();
+
+};
+
+  pJS.fn.particlesCreate = function() {
+    for(var i = 0; i < pJS.particles.number.value; i++) {
+      pJS.particle.array.push(new pJS.fn.particle(pJS.particle.color, pJS.particles.opacity.value));
+    }
+  };
+
+  pJS.fn.particleUpdate = function(){
+
+    for(var i = 0; i < pJS.particle.array.length; i++) {
+
+      var p = pJS.particles.array[i];
+
+      if(pJS.particles.move.enable) {
+        var ms = pJS.particle.move.speed/2;
+        p.x += p.vx * ms;
+        p.y += p.vy * ms;
+      }
+
+      if(pJS.particle.opacity.anim.enable) {
+        if(p.opacity_status == true) {
+          if(p.opacity >= pJS.particles.opacity.value) p.opacity_status = false;
+          p.opacity += p.vo;
+        }else{
+          if(p.opacity <= pJS.particle.opacity.anim.opacity_min) p.opacity_status = true;
+          p.opacity -= p.vo;
+        }
+        if(p.opacity < 0 ) p.opacity = 0;
+
+      }
+
+      if
+    }
+  }
+
+
+
+
+
+
+
+
+
+  }
+}
