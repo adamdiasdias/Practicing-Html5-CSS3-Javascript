@@ -583,7 +583,7 @@ pJS.fn.particle.prototype.draw = function() {
     };
 
     pJS.fn.particlesDraw = function(){
-      pJS.canvas.ctx.clearRect.(0, 0, pJS.canvas.w, pJS.canvas.h);
+      pJS.canvas.ctx.clearRect(0, 0, pJS.canvas.w, pJS.canvas.h);
     
       pJS.fn.particleUpdate();
 
@@ -593,7 +593,55 @@ pJS.fn.particle.prototype.draw = function() {
       }
     };
 
-    pJS
+    pJS.fn.particlesEmpty = function (){
+      pJS.particles.array = [];
+    };
+
+    pJS.fn.particleRefresh = function(){
+
+      cancelRequestAnimFrame(pJS.fn.checkAnimFrame); 
+      cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+      pJS.tmp.source_svg = undefined;
+      pJS.tmp.img_obj = undefined;
+      pJS.tmp.count_svg = 0;
+      pJS.fn.particlesEmpty();
+      pJS.fn.canvasClear();
+
+      pJS.fn.vendors.start();
+
+    };
+
+
+
+    pJS.fn.interact.linkParticles = function(p1, p2){
+
+      var dx = p1.x - p2,
+          dy = p1.y - p2,
+          dist = Math.sqrt(dx*dx + dy*dy);
+
+      if(dist <= pJS.particles.line_linked.distance){
+
+        var opacity_line = pJS.particles.line_linked.opacity - (dist / (1/pJS.particles.line_linked.opacity)) / pJS.particles.line_linked.distance;
+         
+        if(opacity_line > 0){
+
+          var color_line = pJS.particles.line_linked.color_rgb_line;
+          pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+',+opacity_line');
+          pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
+
+
+          pJS.canvas.ctx.beginPath();
+          pJS.canvas.ctx.moveTo(p1.x, p1.y);
+          pJS.canvas.ctx.lineTo(p2.x, p2.y);
+          pJS.canvas.ctx.stroke();
+          pJS.canvas.ctx.closePath();
+        }
+
+
+        
+
+      }
+    }
 
 
     
