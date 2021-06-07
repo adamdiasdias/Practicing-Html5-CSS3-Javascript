@@ -508,8 +508,95 @@ pJS.fn.particle.prototype.draw = function() {
 
       }
 
-      if
-    }
+      if(pJS.particle.move.out_mode == 'bounce'){
+        var new_pos = {
+          x_left: p.radius,
+          x_right: pJS.canvas.w,
+          y_top: p.radius,
+          y_bottom: pJS.canvas.h
+        }
+      }else{
+        var new_pos = {
+          x_left: -p.radius,
+          x_right: pJS.canvas.w + p.radius,
+          y_top: -p.radius,
+          y_bottom: pJS.canvas.h + p.radius
+        }
+      }
+
+      if(p.x - p.radius > pJS.canvas.w){
+        p.x = new_pos.x_left;
+        p.y = Math.random() * pJS.canvas.h;
+      }
+      else if(p.x + p.radius < 0){
+        p.x = new_pos.x_right;
+        p.y = Math.random() * pJS.canvas.h;
+      }
+      if(p.y - p.radius > pJS.canvas.h){
+        p.y = new_pos.y_bottom;
+        p.x = Math.random() * pJS.canvas.w;
+      }
+      else if(p.y + p.radius < 0){
+        p.y = new_pos.y_bottom;
+        p.x = Math.random() * pJS.canvas.w;
+      }
+
+      switch(pJS.particles.move.out_mode){
+        case 'bounce':
+          if (p.x + p.radius > pJS.canvas.w) p.vw = -p.vx;
+          else if (p.x - p.radius < 0) p.vx = -p.vx;
+          if (p.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
+          else if (p.y - p.radius < 0) p.vy = -p.vy;
+        break;
+      }
+
+      if(isInArray('grab' , pJS.interact.events.onhover.mode)){
+        pJS.fn.modes.grabParticle(p);
+      }
+
+      if(isInArray('bubble' , pJS.interactivity.events.onhover.mode) || isInArray('bubble' , pJS.interact.events.onclick.mode)){
+        pJS.fn.modes.bubbleParticle(p);
+      }
+
+      if(isInArray('repulse' , pJS.interactivity.events.onhover.mode) || isInArray('repulse' , pJS.interactivity.events.onclick.mode)){
+        pJS.fn.modes.repulseParticle(p);
+      }
+
+      if(pJS.particles.line_linked.enable || pJS.particles.move.attract.enable){
+        for(var j = i + 1; j < pJS.particles.array.length; j++ ){
+          var p2 = pJS.particle.array[j];
+
+          if(pJS.particles.line_linked.enable){
+            pJS.fn.interact.linkParticles(p,p2);
+          }
+
+          if(pJS.particles.move.attract.enable){
+             pJS.fn.interact.attractParticles(p,p2)
+          }
+
+          if(pJS.particles.move.bounce){
+            pJS.fn.interact.bounceParticles(p,p2);
+          }
+        }
+        }
+        }
+    };
+
+    pJS.fn.particlesDraw = function(){
+      pJS.canvas.ctx.clearRect.(0, 0, pJS.canvas.w, pJS.canvas.h);
+    
+      pJS.fn.particleUpdate();
+
+      for(var i = 0; i < pJS.particle.array.length; i++){
+        var p= pJS.particles.array[i];
+        p.draw();
+      }
+    };
+
+    pJS
+
+
+    
   }
 
 
