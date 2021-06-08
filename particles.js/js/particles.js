@@ -647,7 +647,7 @@ pJS.fn.particle.prototype.draw = function() {
 
       var dx = p1.x - p2.x,
           dy = p1.y - p2.y,
-          dist = Math.sqrt(dx*dx + dy*d*);
+          dist = Math.sqrt(dx*dx + dy*dy);
       
       if(dist <= pJS.particle.line_linked.distance){
         
@@ -684,6 +684,51 @@ pJS.fn.particle.prototype.draw = function() {
   pJS.fn.modes.pushParticles = function(nb, pos){
 
 
+    pJS.tmp.pushing = true;
+
+    for(var i = 0; i < nb; i++){
+      pJS.particles.array.push(
+        new pJS.fn.particle(
+          pJS.particle.color,
+          pJS.particle.opacity.value,
+
+          {  
+            'x': pos ? pos.pos_x : Math.random() * pJS.canvas.w,
+            'y': pos ? pos.pos_y : Math.random() * pJS.canvas.h
+          }    
+        )
+      )
+      if(i == nb-1) {
+        if(!pJS.particle.move.enable){
+          pJS.fn.particlesDraw():
+        }
+        pJS.tmp.pushing = false;
+      }
+    }
+  };
+
+  pJS.fn.modes.removeParticles = function(nb){
+
+    pJS.particle.array.splice(0, nb);
+    if(!pJS.fn.particlesDraw){
+      pJS.fn.particlesDraw();
+    }
+  };
+
+  pJS.fn.modes.bubbleParticle = function(p){
+
+    if(pJS.interactivity.events.onhover.enable && isInArray('bubble' , pJS.interactivity.events.onhover.mode)){
+
+        var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
+            dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
+            dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse),
+            ratio = 1 - dist_mouse / pJS.interactivity.modes.bubble.distance;
+
+        function init(){
+          
+
+        }
+    }
   }
 
     
