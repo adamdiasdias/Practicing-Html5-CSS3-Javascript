@@ -619,6 +619,8 @@ pJS.fn.particle.prototype.draw = function() {
           dy = p1.y - p2,
           dist = Math.sqrt(dx*dx + dy*dy);
 
+
+
       if(dist <= pJS.particles.line_linked.distance){
 
         var opacity_line = pJS.particles.line_linked.opacity - (dist / (1/pJS.particles.line_linked.opacity)) / pJS.particles.line_linked.distance;
@@ -626,7 +628,7 @@ pJS.fn.particle.prototype.draw = function() {
         if(opacity_line > 0){
 
           var color_line = pJS.particles.line_linked.color_rgb_line;
-          pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+',+opacity_line');
+          pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
           pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
 
 
@@ -636,13 +638,53 @@ pJS.fn.particle.prototype.draw = function() {
           pJS.canvas.ctx.stroke();
           pJS.canvas.ctx.closePath();
         }
-
-
-        
+   
 
       }
-    }
+    };
 
+    pJS.fn.interact.attractParticles = function(p1, p2){
+
+      var dx = p1.x - p2.x,
+          dy = p1.y - p2.y,
+          dist = Math.sqrt(dx*dx + dy*d*);
+      
+      if(dist <= pJS.particle.line_linked.distance){
+        
+
+        var ax = dx/(pJS.particles.move.attract.rotateX*1000),
+            ay = dy/(pJS.particles.move.attract.rotatey*1000);
+            
+        p1.vx -= ax;
+        p1.vy -= ay;
+
+        p2.vx += ax;
+        p2.vy += ay;
+      }
+    }
+    
+  pJS.fn.interact.bounceParticles = function(p1, p2){
+    
+      var dx = p1.x - p2.x,
+          dy = p1.y - p2.y,
+          dist = Math.sqrt(dx*dx + dy*dy),
+          dist_p = p1.radius+p2.radius;
+
+      if(dist <= dist_p){
+        p1.vx = -p1.vx;
+        p1.vy = -p1.vy;
+
+        p2.vx = -p2.vx;
+        p2.vy = -p2.vy;
+      }
+    
+  }
+
+
+  pJS.fn.modes.pushParticles = function(nb, pos){
+
+
+  }
 
     
   }
