@@ -700,7 +700,7 @@ pJS.fn.particle.prototype.draw = function() {
       )
       if(i == nb-1) {
         if(!pJS.particle.move.enable){
-          pJS.fn.particlesDraw():
+          pJS.fn.particlesDraw();
         }
         pJS.tmp.pushing = false;
       }
@@ -725,10 +725,96 @@ pJS.fn.particle.prototype.draw = function() {
             ratio = 1 - dist_mouse / pJS.interactivity.modes.bubble.distance;
 
         function init(){
+          p.opacity_bubble = p.opacity;
+          p.radius_bubble = p.radius;
+        }
+
+        if(dist_mouse  <= pJS.interactivity.modes.bubble.distance){
+          
+          if(ratio >= 0 && pJS.interactivity.status == 'mousemove'){
+            
+            if(ratio >= 0 && pJS.interactivity.modes.bubble.size != pJS.particle.size.value){
+
+              if(pJS.interactivity.modes.bubble.size > pJS.particle.size.value){
+                var size = p.radius + (pJS.interactivity.modes.bubble.size*ratio);
+                if(size >= 0){
+                  p.radius_bubble = size;
+                }
+              }else{
+                var dif = p.radius - pJS.interactivity.modes.bubble.size,
+                    size = p.radius - (dif*ratio);
+                if(size > 0){
+                  p.radius_nubble = size;
+                }else{
+                  p.radius_bubble = 0;
+                }
+              }
+            }
+
+            if(pJS.interactivity.modes.bubble.opacity != pJS.particle.opacity.value){
+
+              if(pJS.interactivity.modes.bubble.opacity > pJS.particle.opacity.value){
+                var opacity = pJS.interactivity.modes.bubble.opacity*ratio;
+                if(opacity > p.opacity && opacity <= pJS.interactivity.modes.bubble.opacity){
+                  p.opacity_bubble = opacity;
+                }
+              }else{
+                var opacity = p.opacity - (pJS.particle.value-pJS.interactivity.modes.bubble.opacity)*ratio;
+                if(opacity < p.opacity && opacity >= pJS.interactivity.modes.bubble.opacity){
+                  p.opacity_bubble = opacity;
+                }
+              }
+            }
+          }
+        }
+
+        }else{ 
+          init();
+     }
+
+
+     if(pJS.interactivity.status == 'mouseleave'){
+       init();
+     }
+
+     if(pJS.interactivity.events.onclick.enable && isInArray('bubble' , pJS.interactivity.events.onclick.mode)){
+
+        if(pJS.tmp.bubble_clicking){
+          var dx_mouse = p.x - pJS.interactivity.mouse.clik_pos_x,
+              dy_mouse = p.y - pJS.interactivity.mouse.clik_pos_y,
+              dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse),
+              time_spent = (new Date().getTime() - pJS.interactivity.mouse.clik_time)/1000;
+
+          if(time_spent > pJS.interactivity.modes.bubble.duration){
+            pJS.tmp.bubble_duration_end = true;
+          }
+
+          if(time_spent  > pJS.interactivity.modes.bubble.duration*2){
+            pJS.tmp.bubble_clicking = false;
+            pJS.tmp.bubble_duration_end = false;
+          
+          }
+        }
+
+        function process(bubble_param, particles_param, p_obj_bubble, p_obj, id){
+
+          if(bubble_param != particles_param){
+
+            if(!pJS.tmp.bubble_duration_end){
+              if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
+                if(p_obj_bubble != undefined) var obj = p_obj_bubble;
+                else var obj = p_obj;
+                if(obj != bubble_param){
+                  var value = p_obj - (time_spent * (p_obj - bubble_param) / )
+                }
+              }
+            }
+
+          }
           
 
-        }
-    }
+        })
+     }
   }
 
     
