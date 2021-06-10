@@ -788,7 +788,7 @@ pJS.fn.particle.prototype.draw = function() {
           if(time_spent > pJS.interactivity.modes.bubble.duration){
             pJS.tmp.bubble_duration_end = true;
           }
-
+          :construction:
           if(time_spent  > pJS.interactivity.modes.bubble.duration*2){
             pJS.tmp.bubble_clicking = false;
             pJS.tmp.bubble_duration_end = false;
@@ -805,9 +805,24 @@ pJS.fn.particle.prototype.draw = function() {
                 if(p_obj_bubble != undefined) var obj = p_obj_bubble;
                 else var obj = p_obj;
                 if(obj != bubble_param){
-                  var value = p_obj - (time_spent * (p_obj - bubble_param) / )
+                  var value = p_obj - (time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration);
+                  if(id == 'size') p.radius_bubble = value;
+                  if(id == 'opacity') p.opacity_bubble = value;
                 }
+              }else{ 
+                if(id == 'size') p.radius_bubble = undefined;
+                if(id == 'opactiy') p.opacity_bubble = undefined;               
               }
+             }else{
+              if(p_obj_bubble != undefined){ 
+                var value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration), 
+                    dif = bubble_param - value_tmp;
+                    value = bubble_param + dif;
+                if(id == 'size') p.radius_bubble = value;
+                if(id == 'opacity') p.opacity_bubble = value;
+              }
+
+
             }
 
           }
