@@ -918,10 +918,101 @@ pJS.fn.particle.prototype.draw = function() {
 
       pJS.fn.modes.grabParticle = function(p){
 
-        if(pJS)
+        if(pJS.interactivity.events.onhover.enable && pJS.interactivity.status == 'mousemove'){
+
+
+          var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
+              dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
+              dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse);
+
+
+          if(dist_mouse <= pJS.interactivity.modes.grab.distance){
+
+            var opacity_line = pJS.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1/pJS.interactivity.modes.grab.line_linked.opa)) / pJS.interactivity.modes.grap.distance;
+            
+            if(opacity_line > 0){
+
+
+              var color_line = pJS.particle.line_linked.color_rgb_line;
+              pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
+              pJS.canvas.ctx.lineWidth = pJS.particle.line_linked.width;
+
+
+              pJS.canvas.ctx.beginPath();
+              pJS.canvas.ctx.moveTo(p.x, p.y);
+              pJS.canvas.ctx.lineTo(pJS.interactivity.mouse.pos_x, pJS.interactivity.mouse.pos_y);
+              pJS.canvas.ctx.stroke();
+              pJS.canvas.ctx.closePath();
+            }
+          }
+        }
+      }
+  pJS.fn.vendors.eventsListeners = function(){
+    
+    if(pJS.interactivity.detect_on == 'window'){
+      pJS.interactivity.el = window;
+    }else{
+      pJS.interactivity.el = pJS.canvas.el;
+    }
+
+    if(pJS.interactivity.el.addEventListener('mousemove', function(e){
+      
+      if(pJS.interactivity.el == window){
+        var pos_x = e.clientX,
+            pos_y = e.clientY,
+      }
+      else{
+        var pos_x = e.offsetX || e.clientX,
+            pos_y = e.offsetY || e.clientY;
       }
 
+      pJS.interactivity.mouse.pos_x = pos_x;
+      pJS.interactivity.mouse.pos_y = pos_y;
 
+      if(pJS.tmp.retina){
+        pJS.interactivity.mouse.pos_x  *= pJS.canvas.pxratio;
+        pJS.interactivity.mouse.pos_y  *= pJS.canvas.pxratio;
+      }
+
+      pJS.interactivity.status = 'mousemove';
+    
+    });
+
+    pJS.interactivity.el.eddEventListener('mouseleave', function(e){
+
+      pJS.interactivity.mouse.pos_x = null;
+      pJS.interactivity.mouse.pos_y = null;
+      pJS.interactivity.status = 'mouseleave';
+    });
+
+    }
+
+  if(pJS.interactivity.events.onclick.enable){
+
+    pJS.interactivity.el.eddEventListener('clik', function(){
+
+      pJS.interactivity.mouse.clik_pos_x = pJS.interactivity.mouse.pos_x;
+      pJS.interactivity.mouse.clik_pos_y = pJS.interactivity.mouse.pos_y;
+      pJS.interactivity.mouse.click_time = new Date().getTime();
+
+      if(pJS.interactivity.events.onclick.enable){
+        switch(pJS.interactivity.events.onclick.mode){
+
+          case 'push':
+              if(pJS.particles.move.enable){
+                pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
+              }else{
+                if(pJS.interactivity.modes.push.particles_nb == 1){
+                  pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
+                }
+                else if(pJS.interactivity.modes.push.particles_nb > 1){
+                  pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb);
+                }
+              }
+      }
+      }
+  }
+  }
 
 
 
