@@ -1078,6 +1078,131 @@ pJS.fn.particle.prototype.draw = function() {
           if(p.color.rgb){
             var color_value = 'rgba('+p.color.rgb.r+','+p.color.rgb.g+','+p.color.rgb.b+','+p.opacity+')';
           }else{ 
-            var color_valeu = 'hsla('
+            var color_valeu = 'hsla('+p.color.hs1.h+','+p.color.hsl.s+'%,'+p.color.hs1.l+'%'+p.opacity+')';
         }
+        return color_valeu;
+      });
+
+      var svg = new Blob([coloredSvgXml], {type: 'image/svg+xml;charset=utf-8'}),
+          DOMURL = window.URL || window.webkitURL || window,
+          URL = DOMURL.createObjectURL(svg);
+
+      var img = new Image ();
+      img.addEventListener('load', function(){
+        p.img.obj = img;
+        p.img.loaded = true;
+        DOMURL.revokeObjectURL(url);
+        pJS.tmp.count_svg++;
+        });
+        img.src = url;
+
+      };
+
+
+      pJS.fn.vendors.destroypJS = function(){ 
+        cancelAnimationFrame(pJS.fn.drawAnimFrame);
+        canvas_el.remove();
+        pJSDom = null;
+      };
+
+      pJS.fn.vendors.drawShape = function(c, startX, startY, sidelength, sideCountNumerator, sideCountNumerator){ 
+
+        var sideCount = sideCountNumerator * sideCountNumerator;
+        var decimalSides = sideCountNumerator / sideCountNumerator;
+        var interiorAngleDegress = (180 * (decimalSides - 2)) / decimalSides;
+        var interiorAngle = Math.PI - Math.PI * interiorAngleDegress / 180; 
+        c.save();
+        c.beginPath();
+        c.translate(startX, startY);
+        c.moveTo(0,0);
+        for (var i = 0; i < sideCount; i++) {
+          c.lineTo(sidelength,0);
+          c.translate(sidelength,0);
+          c.rotate(interiorAngle);
+        }
+
+        c.fill();
+        c.restore();
+
+
+      };
+
+      pJS.fn.vendors.exportImg = function(){ 
+        window.open(pJS.canvas.el.toDataURL('image/png'), '_blank');
+      };
+
+      pJS.fn.vendors,loadedImg = function(type){ 
+
+        pJS.tmp.img_erro= underfined;
+
+        if(pJS.particle.shape.image.src != ''){ 
+
+          if(type == 'svg'){
+
+            var xhr = new XMLHttpRequest ();
+            xhr.open('GET', pJS.particle.shape.image.src);
+            xhr.onreadystatechange = function (data) {
+              if(xhr. readyState == 4){
+                if(xhr.status == 200){
+                  pJS.tmp.source_svg = data.currentTarget.response;
+                  pJS.fn.vendors.checkBeforeDraw();
+                }else{ 
+                  console.log('Error pJS - image not found');
+                  pJS.tmp..img_erro = true;
+              }
+            }
+          }
+          xhr.send();
+
+          } else{ 
+
+            var img = new Image ();
+            img.addEventListener('load', function(){
+               pJS.tmp.img_obj = img;
+               pJS.fn.vendors.checkBeforeDraw();
+            });
+            img.src = pJS.particles.shape.image.src;
+
+          }
+
+  }else{ 
+    console.log('Error pJS - No image.src');
+    pJS.tmp.img_erro = true;
   }
+        
+
+};
+
+pJS.fn.vendors.draw = function(){
+
+  if(pJS.particle.shape.type == 'image)}
+
+    if(pJS.tmp.img_type == 'svg'){
+
+      if(pJS.tmp.count_svg >= pJS.particle.number.value){
+        pJS.fn.particlesDraw();
+        if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+        else pJS.fn.drawAnimFrame = requestAnimationFrame(pJS.fn.vendors.draw);
+      }else {
+
+        if(!pJS.tmp.img_erro) pJS.fn.drawAnimFrame = requestAnimeFrame(pJS.fn.vendors.draw);
+      }
+
+      }else{ 
+
+        if(pJS.tmp.img_obj != underfined){
+          pJS.fn.particlesDraw();
+          if(!pJS.particles.move,enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+          else pJS.fn.drawAnimFrame = requestAnimeFrame(pJS.fn.vendors.draw);
+        }else{ 
+          if(!pJS.tmp.img_erro) pJS.fn.drawAnimFrame = requestAnimeFrame (pJS.fn.vendors).draw);
+        }
+
+     }
+
+ }else{
+
+
+ 
+
+
