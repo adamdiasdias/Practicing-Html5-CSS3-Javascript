@@ -1201,6 +1201,49 @@ pJS.fn.vendors.draw = function(){
      }
 
  }else{
+   pJS.fn.particlesDraw();
+   if(!pJS.particle.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+   else pJS.fn.drawAnimFrame = requestAnimeFrame(pJS.fn.vendors.draw);
+  }
+
+  };
+
+  pJS.fn.vendors.checkBeforeDraw = function(){ 
+
+    if(pJS.particles.shape.type == 'image'){
+
+      if(pJS.tmp.img_type == 'svg' && pJS.tmp.source_svg == underfined){ 
+        pJS.tmp.checkAnimFrame = requestAnimeFrame(check);
+    }else{ 
+
+      cancelRequestAnimFrame(pJS.tmp.checkAnimFrame);
+      if(!pJS.tmp.img_erro){ 
+        pJS.fn.vendors.init();
+        pJS.fn.vendors.draw();
+    }
+
+  }
+
+}else{ 
+  pJS.fn.vendors.init();
+  pJS.fn.vendors.draw();
+
+}
+
+};
+
+pJS.fn.vendors.init = function(){
+
+
+  pJS.fn.retinaInit();
+  pJS.fn.canvasInit();
+  pJS.fn.canvasSize();
+  pJS.fn.canvasPaint();
+  pJS.fn.particlesCreate();
+  PJS.fn.vendors.densityAutoParticles();
+}
+
+
 
 
  
