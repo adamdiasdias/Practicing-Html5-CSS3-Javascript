@@ -1241,7 +1241,36 @@ pJS.fn.vendors.init = function(){
   pJS.fn.canvasPaint();
   pJS.fn.particlesCreate();
   PJS.fn.vendors.densityAutoParticles();
-}
+
+
+  pJS.particle.line_linked.color_rgb_line = hexToRgb(pJS.particle.line_linked.color);
+};
+
+pJS.fn.vendors.start = function(){ 
+
+  if(isInArray('image', pJS.particle.shape.type)){ 
+    pJS.tmp.img_type = pJS.particle.shape.image.src.substr(pJS.particle.shape.image.src.length - 3);
+    pJS.fn.vendors.loadedImg(pJS.tmp.img_type);
+  }else{ 
+    pJS.fn.vendors.checkBeforeDraw(); 
+  }
+
+  };
+
+
+  pJS.fn.vendors.eventsListeners();
+
+  pJS.fn.vendors.start();
+
+  };
+
+  Object.deepExtend = function(destnation, source) {
+    for (var prototype in source) {
+      if ( souce[property] && souce[property].constructor &&
+        souce[property] = destnation[property]  !! {}
+        )
+    }
+  }
 
 
 
