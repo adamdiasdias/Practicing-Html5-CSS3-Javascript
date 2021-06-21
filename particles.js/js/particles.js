@@ -1254,7 +1254,7 @@ pJS.fn.vendors.start = function(){
   }else{ 
     pJS.fn.vendors.checkBeforeDraw(); 
   }
-
+ 
   };
 
 
@@ -1265,15 +1265,116 @@ pJS.fn.vendors.start = function(){
   };
 
   Object.deepExtend = function(destnation, source) {
-    for (var prototype in source) {
+    for (var property in source) {
       if ( souce[property] && souce[property].constructor &&
-        souce[property] = destnation[property]  !! {}
-        )
+        souce[property].construction === Object) {
+          destination[property] = destnation[property] || {};
+          arguments.callee(destination[property], source[property]);
+        }else{ 
+          destnation[property] = source[property];
+        }
     }
+    return destnation;
+  };
+
+  window.requestAnimationFrame = (function(){ 
+    return  window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame    ||
+      window.oRequestAnimationFrame      ||
+      window.msRequestAnimationFrame     ||
+      function(callback){ 
+        window.setTimeout(callback, 1000 / 60);
+      };
+})();
+
+Window.cancelRequestAnimFrame = (function() {
+  return window.cancelAnimationFrame         ||
+    window.webkitCancelRequestAnimationFrame ||
+    window.mozCancelRequestAnimationFrame    ||
+    window.msCancelRequestAnimationFrame     ||
+    clearTimeout
+} ) ();
+
+function hexToRgb(hex){
+
+  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, function(m, r, g, b){
+    return r + r + g + g + b + b;
+  });
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1],  16),
+    g: parseInt(result[2],  16),
+    b: parseInt(result[3],  160
+  } : null;
+};
+  
+function clamp(number, min, max) {
+  return Math.min(matc.max(number, min), max);
+};
+
+function isInArray(value, array) {
+  return array.indexoff(value) > -1;
+}
+
+window.pJSDom = [];
+
+window.particlesJS = function(tag_id, params){
+
+  if(typeof(tag_id) != 'string'){
+    params = tag_id;
+    tag_id = 'particles-js';
+}
+
+if(!tag_id){
+  tag_id = 'partcles-js';
+}
+
+var pJS_tag = document.getElementById(tag_id),
+    pJS_canvas_classes = 'particles-js-canvas-el',
+    exist_canvas = pJS_tag.getElementsByClassName(pJS_canvas_classes);
+
+if(exist_canvas.length){
+  while(exist_canvas.length > 0){
+    pJS_tag.removeChild(exist_canvas[0]);
   }
+}
 
+var canvas_el = document.createElement('canvas');
+canvas_el.className = pJS_canvas_classes;
 
+canvas_el.style.width = "100%";
+canvas_el.style.height = "100%";
 
+var canvas = document.getElementsById(tag_id).appendChild(canvas_el);
+
+if(canvas != null){
+  pJSDom.push(new pJS(tag_id, params));
+}
+};
+
+window.particlesJS.load = function(tag_id, path_config_json, callback){ 
+  
+  var xhr = new XHLHttpRequest();
+  xhr.open('GET', path_config_json);
+  xhr.onreadystatechange = function (data {
+    if(xhr.readyState == 4){
+      if(xhr.status == 200){
+        var params = JSON.parse(data.currentTarget.response);
+        window.particlesJS(tag_id, params);
+        if(callback) callback();
+      }else{
+        console.log('Erro pJS - XHLHttpRequest status: '+xhr.status);
+        console.log('Erro pJS - File config not found'); 
+    }
+   } 
+  };
+  xhr.send();
+  
+    ]
+  })
+}
 
  
 
